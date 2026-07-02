@@ -31,7 +31,7 @@ Abre o `index.html` no browser, ou usa a extensão "Live Server" no VSCode para 
 
 ## Demo
 
-🔗 [Ver site ao vivo](https://gusto2004.github.io/Projeto-Calculadora/)
+🔗 [Ver site ao vivo](https://gusto2004.github.io/Projeto-5-Calculadora/)
 
 ## Próximos passos
 
