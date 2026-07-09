@@ -3,8 +3,18 @@ const numero2 = document.querySelector("#numero2");
 const operacao = document.querySelector("#operacao");
 const calcular = document.querySelector("#calcular");
 const resultado = document.querySelector("#resultado");
+const listaHistorico = document.querySelector("#historico");
 
-calcular.addEventListener("click", () => {
+const sinais = {
+  somar: "+",
+  subtrair: "−",
+  multiplicar: "×",
+  dividir: "÷",
+};
+
+let historico = JSON.parse(localStorage.getItem("historico")) || [];
+
+function fazerCalculo() {
   const num1 = parseFloat(numero1.value);
   const num2 = parseFloat(numero2.value);
   const op = operacao.value;
@@ -38,18 +48,61 @@ calcular.addEventListener("click", () => {
       return;
   }
 
-  resultado.textContent = `Resultado: ${Number(valor.toFixed(4))}`;
+  const valorFinal = Number(valor.toFixed(4));
+  resultado.textContent = `Resultado: ${valorFinal}`;
+
+  // Guardar no histórico (no início do array)
+  const registo = `${num1} ${sinais[op]} ${num2} = ${valorFinal}`;
+  historico.unshift(registo);
+  historico = historico.slice(0, 5); // manter só os últimos 5
+  localStorage.setItem("historico", JSON.stringify(historico));
+  mostrarHistorico();
+}
+
+function mostrarHistorico() {
+  listaHistorico.innerHTML = "";
+  historico.forEach(function (linha) {
+    const li = document.createElement("li");
+    li.textContent = linha;
+    listaHistorico.appendChild(li);
+  });
+}
+
+calcular.addEventListener("click", fazerCalculo);
+
+// Calcular ao carregar Enter em qualquer um dos campos
+[numero1, numero2].forEach(function (campo) {
+  campo.addEventListener("keydown", function (evento) {
+    if (evento.key === "Enter") {
+      fazerCalculo();
+    }
+  });
 });
 
-const botaoTema = document.querySelector('#toggle-tema');
+mostrarHistorico();
+
+// ===== TEMA (com memória) =====
+const botaoTema = document.querySelector("#toggle-tema");
 const body = document.body;
 
-botaoTema.addEventListener('click', function () {
-  body.classList.toggle('dark');
+const temaGuardado = localStorage.getItem("tema");
 
-  if (body.classList.contains('dark')) {
-    botaoTema.textContent = '☀️';
+if (temaGuardado === "claro") {
+  body.classList.remove("dark");
+  botaoTema.textContent = "🌙";
+} else {
+  body.classList.add("dark");
+  botaoTema.textContent = "☀️";
+}
+
+botaoTema.addEventListener("click", function () {
+  body.classList.toggle("dark");
+
+  if (body.classList.contains("dark")) {
+    botaoTema.textContent = "☀️";
+    localStorage.setItem("tema", "escuro");
   } else {
-    botaoTema.textContent = '🌙';
+    botaoTema.textContent = "🌙";
+    localStorage.setItem("tema", "claro");
   }
 });

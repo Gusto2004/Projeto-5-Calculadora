@@ -8,6 +8,7 @@
   --bg: #f7f7fa;
   --bg-card: #ffffff;
   --text: #1e1e2e;
+  --text-muted: #9c9caa;
   --border: #e2e2ea;
   --accent: #4361ee;
 }
@@ -16,6 +17,7 @@ body.dark {
   --bg: #16161e;
   --bg-card: #1e1e2e;
   --text: #e4e4ef;
+  --text-muted: #6c6c80;
   --border: #33334a;
   --accent: #7c93ff;
 }
@@ -30,6 +32,11 @@ body {
   transition:
     background-color 0.3s,
     color 0.3s;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .app {
@@ -92,6 +99,22 @@ button#calcular {
   color: var(--accent);
   min-height: 40px;
   margin-top: 8px;
+}
+
+.historico {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.historico:empty {
+  border-top: none;
+  padding-top: 0;
 }
 
 /* Remove os spinners no Chrome, Edge, Safari */
