@@ -1,108 +1,108 @@
-const numero1 = document.querySelector("#numero1");
-const numero2 = document.querySelector("#numero2");
-const operacao = document.querySelector("#operacao");
-const calcular = document.querySelector("#calcular");
-const resultado = document.querySelector("#resultado");
-const listaHistorico = document.querySelector("#historico");
+const number1 = document.querySelector("#number1");
+const number2 = document.querySelector("#number2");
+const operation = document.querySelector("#operation");
+const calculateButton = document.querySelector("#calculate");
+const result = document.querySelector("#result");
+const historyList = document.querySelector("#history");
 
-const sinais = {
-  somar: "+",
-  subtrair: "−",
-  multiplicar: "×",
-  dividir: "÷",
+const symbols = {
+  add: "+",
+  subtract: "−",
+  multiply: "×",
+  divide: "÷",
 };
 
-let historico = JSON.parse(localStorage.getItem("historico")) || [];
+let calculations = JSON.parse(localStorage.getItem("history")) || [];
 
-function fazerCalculo() {
-  const num1 = parseFloat(numero1.value);
-  const num2 = parseFloat(numero2.value);
-  const op = operacao.value;
+function calculate() {
+  const num1 = parseFloat(number1.value);
+  const num2 = parseFloat(number2.value);
+  const op = operation.value;
 
   if (isNaN(num1) || isNaN(num2)) {
-    resultado.textContent = "Digite dois números válidos.";
+    result.textContent = "Enter two valid numbers.";
     return;
   }
 
-  let valor;
+  let value;
 
   switch (op) {
-    case "somar":
-      valor = num1 + num2;
+    case "add":
+      value = num1 + num2;
       break;
-    case "subtrair":
-      valor = num1 - num2;
+    case "subtract":
+      value = num1 - num2;
       break;
-    case "multiplicar":
-      valor = num1 * num2;
+    case "multiply":
+      value = num1 * num2;
       break;
-    case "dividir":
+    case "divide":
       if (num2 === 0) {
-        resultado.textContent = "Não é possível dividir por zero.";
+        result.textContent = "Cannot divide by zero.";
         return;
       }
-      valor = num1 / num2;
+      value = num1 / num2;
       break;
     default:
-      resultado.textContent = "Operação inválida.";
+      result.textContent = "Invalid operation.";
       return;
   }
 
-  const valorFinal = Number(valor.toFixed(4));
-  resultado.textContent = `Resultado: ${valorFinal}`;
+  const finalValue = Number(value.toFixed(4));
+  result.textContent = `Result: ${finalValue}`;
 
-  // Guardar no histórico (no início do array)
-  const registo = `${num1} ${sinais[op]} ${num2} = ${valorFinal}`;
-  historico.unshift(registo);
-  historico = historico.slice(0, 5); // manter só os últimos 5
-  localStorage.setItem("historico", JSON.stringify(historico));
-  mostrarHistorico();
+  // Save to the history (at the start of the array)
+  const entry = `${num1} ${symbols[op]} ${num2} = ${finalValue}`;
+  calculations.unshift(entry);
+  calculations = calculations.slice(0, 5); // keep only the last 5
+  localStorage.setItem("history", JSON.stringify(calculations));
+  showHistory();
 }
 
-function mostrarHistorico() {
-  listaHistorico.innerHTML = "";
-  historico.forEach(function (linha) {
+function showHistory() {
+  historyList.innerHTML = "";
+  calculations.forEach(function (line) {
     const li = document.createElement("li");
-    li.textContent = linha;
-    listaHistorico.appendChild(li);
+    li.textContent = line;
+    historyList.appendChild(li);
   });
 }
 
-calcular.addEventListener("click", fazerCalculo);
+calculateButton.addEventListener("click", calculate);
 
-// Calcular ao carregar Enter em qualquer um dos campos
-[numero1, numero2].forEach(function (campo) {
-  campo.addEventListener("keydown", function (evento) {
-    if (evento.key === "Enter") {
-      fazerCalculo();
+// Calculate when Enter is pressed in either field
+[number1, number2].forEach(function (field) {
+  field.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      calculate();
     }
   });
 });
 
-mostrarHistorico();
+showHistory();
 
-// ===== TEMA (com memória) =====
-const botaoTema = document.querySelector("#toggle-tema");
+// ===== THEME (remembered between visits) =====
+const themeButton = document.querySelector("#theme-toggle");
 const body = document.body;
 
-const temaGuardado = localStorage.getItem("tema");
+const savedTheme = localStorage.getItem("theme");
 
-if (temaGuardado === "claro") {
+if (savedTheme === "light") {
   body.classList.remove("dark");
-  botaoTema.textContent = "🌙";
+  themeButton.textContent = "🌙";
 } else {
   body.classList.add("dark");
-  botaoTema.textContent = "☀️";
+  themeButton.textContent = "☀️";
 }
 
-botaoTema.addEventListener("click", function () {
+themeButton.addEventListener("click", function () {
   body.classList.toggle("dark");
 
   if (body.classList.contains("dark")) {
-    botaoTema.textContent = "☀️";
-    localStorage.setItem("tema", "escuro");
+    themeButton.textContent = "☀️";
+    localStorage.setItem("theme", "dark");
   } else {
-    botaoTema.textContent = "🌙";
-    localStorage.setItem("tema", "claro");
+    themeButton.textContent = "🌙";
+    localStorage.setItem("theme", "light");
   }
 });

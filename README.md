@@ -1,43 +1,43 @@
-# Calculadora
+# Calculator
 
-Calculadora com as quatro operações básicas, feita em JavaScript puro. Primeiro projeto construído de forma autónoma, como exercício de consolidação.
+A calculator with the four basic operations, built with vanilla JavaScript. It was the first project I built on my own, as a consolidation exercise.
 
-## Funcionalidades
+## Features
 
-- Somar, subtrair, multiplicar e dividir dois números
-- Suporte a números decimais
-- Cálculo com a tecla Enter, além do botão
-- Histórico dos últimos cálculos, guardado entre visitas
-- Modo escuro / claro com botão de alternância, que memoriza a preferência
-- Validação de entradas inválidas ou vazias
-- Tratamento do caso de divisão por zero
+- Add, subtract, multiply and divide two numbers
+- Support for decimal numbers
+- Calculate with the Enter key, as well as the button
+- History of the latest calculations, saved between visits
+- Dark / light mode with a toggle button, remembered between visits
+- Validation of invalid or empty inputs
+- Handling of division by zero
 
-## Tecnologias
+## Technologies
 
 - HTML5
-- CSS3 (variáveis CSS para os temas)
-- JavaScript (DOM, eventos, `switch`, `localStorage`)
+- CSS3 (CSS variables for the themes)
+- JavaScript (DOM, events, `switch`, `localStorage`)
 
-## Conceitos praticados
+## Concepts practiced
 
-- Seleção de elementos do DOM (`querySelector`)
-- Eventos de clique e de teclado (`addEventListener`, `keydown`)
-- Conversão de texto para número (`parseFloat`) e validação (`isNaN`)
-- Estrutura de decisão com `switch`
-- "Early return" para tratar casos de erro
-- Persistência de dados no browser com `localStorage`
-- Alternância de tema com `classList.toggle` e variáveis CSS
+- Selecting DOM elements (`querySelector`)
+- Click and keyboard events (`addEventListener`, `keydown`)
+- Converting text to a number (`parseFloat`) and validating it (`isNaN`)
+- Decision structure with `switch`
+- "Early return" to handle error cases
+- Persisting data in the browser with `localStorage`
+- Switching themes with `classList.toggle` and CSS variables
 
-## Como correr
+## How to run
 
-Abre o `index.html` no browser, ou usa a extensão "Live Server" no VSCode para veres as alterações em tempo real.
+Open `index.html` in your browser, or use the "Live Server" extension in VS Code to see changes in real time.
 
 ## Demo
 
-🔗 [Ver site ao vivo](https://gusto2004.github.io/Projeto-5-Calculadora/)
+🔗 [View the live site](https://gusto2004.github.io/Projeto-5-Calculadora/)
 
-## Próximos passos
+## Next steps
 
-- [ ] Adicionar suporte a mais operações (percentagem, potência)
-- [ ] Botão para limpar o histórico
-- [ ] Suporte a expressões maiores (mais do que dois números)
+- [ ] Add support for more operations (percentage, power)
+- [ ] A button to clear the history
+- [ ] Support for longer expressions (more than two numbers)

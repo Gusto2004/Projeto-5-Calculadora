@@ -57,12 +57,12 @@ h1 {
   margin-bottom: 8px;
 }
 
-.topo {
+.header {
   display: flex;
   justify-content: flex-end;
 }
 
-.toggle-tema {
+.theme-toggle {
   background: none;
   border: none;
   font-size: 1.2rem;
@@ -81,7 +81,7 @@ select {
   color: var(--text);
 }
 
-button#calcular {
+button#calculate {
   padding: 12px;
   border: none;
   border-radius: 8px;
@@ -92,7 +92,7 @@ button#calcular {
   cursor: pointer;
 }
 
-.resultado {
+.result {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
@@ -101,7 +101,7 @@ button#calcular {
   margin-top: 8px;
 }
 
-.historico {
+.history {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -112,19 +112,19 @@ button#calcular {
   padding-top: 12px;
 }
 
-.historico:empty {
+.history:empty {
   border-top: none;
   padding-top: 0;
 }
 
-/* Remove os spinners no Chrome, Edge, Safari */
+/* Removes the spinners in Chrome, Edge and Safari */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Remove no Firefox */
+/* Removes them in Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
